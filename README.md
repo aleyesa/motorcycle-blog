@@ -1,5 +1,4 @@
-# React/Redux/Router Starter Project
+# Aaron Leyesa Capstone Project
+# A Motorcycle Blog
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
-
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+> A Blog made in React resulting in my motorcycle progression of how I started riding a motorcycle to what my current status and what the future holds!
