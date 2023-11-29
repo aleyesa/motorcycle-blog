@@ -1,13 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
+import axios from "axios";
 
 import ContentLayout from "./layout/content-layout";
 
 export default class PresentTab extends Component {
     constructor() {
         super();
+
+
     }
 
     render() {
+
         return (
             <div>
                 <ContentLayout />
