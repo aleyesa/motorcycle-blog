@@ -8,14 +8,14 @@ export default class PresentTab extends Component {
         super();
     }
 
-    getImages = (e) => {
-        const JAWSDB_URL = 'mysql://vgyb1e6tc22029gj:pkl6mmas5wvd31m9@lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/geei9sek17g9jznr';
+    // getImages = (e) => {
+    //     const JAWSDB_URL = 'mysql://vgyb1e6tc22029gj:pkl6mmas5wvd31m9@lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/geei9sek17g9jznr';
 
-        axios.get(`/`, {})
-        .then((data) => {
-            console.data(data);
-        });
-    } 
+    //     axios.get(`/`, {})
+    //     .then((data) => {
+    //         console.data(data);
+    //     });
+    // } 
 
     render() {
 
