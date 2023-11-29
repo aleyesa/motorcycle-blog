@@ -22,7 +22,7 @@ export default class PresentTab extends Component {
         return (
             <div>
                 <ContentLayout />
-                {this.getImages()}
+                {/* {this.getImages()} */}
                 <img className="present_tab_img" alt="XSR700_img_1" src={require("../../../static/assets/images/XSR700_img_1.jpg")} />
             </div>
         )
