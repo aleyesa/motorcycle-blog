@@ -25,7 +25,7 @@ export default class PresentTab extends Component {
                 <ContentLayout />
                 {images.map(image => (
                     <figure key={image.image_id}>
-                        <img src={image.image_src}></img>
+                        <img className="present_tab_img" src={image.image_src}></img>
                     </figure>
                 ))}
             </div>
