@@ -3,19 +3,19 @@ import axios from "axios";
 
 import ContentLayout from "./layout/content-layout";
 
+const [images, setImages] = useState([]);
+
+useEffect(() => {
+    (async() => {
+        const result = await axios.get('/images');
+        setImages(result.data.images);
+
+    })();
+}, []);
+
 export default class PresentTab extends Component {
     constructor() {
         super();
-
-        const [images, setImages] = useState([]);
-
-        useEffect(() => {
-            (async() => {
-                const result = await axios.get('/images');
-                setImages(result.data.images);
-
-            })();
-        }, []);
     }
 
     render() {
