@@ -12,15 +12,15 @@ const db = mysql.createPool(JAWSDB_URL);
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-  db.query("SELECT * FROM images", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(result);
-    }
-  });
-});
+// app.get('/', (req, res) => {
+//   db.query("SELECT * FROM images", (err, result) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log(result);
+//     }
+//   });
+// });
 
 app.use(express.static(__dirname + '/dist/'));
 
