@@ -1,27 +1,24 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import ContentLayout from "./layout/content-layout";
 
-const [images, setImages] = useState([]);
+const PresentTab = () => {
 
-useEffect(() => {
-    (async() => {
-        const result = await axios.get('/images');
-        setImages(result.data.images);
+    const [images, setImages] = useState([]);
 
-    })();
-}, []);
+    useEffect(() => {
+        (async() => {
+            const result = await axios.get('/images');
+            setImages(result.data.images);
 
-export default class PresentTab extends Component {
-    constructor() {
-        super();
-    }
+        })();
+    }, []);
 
-    render() {
+
 
         return (
-            <div>
+            <div className="present_tab_wrapper">
                 <ContentLayout />
                 {images.map(image => (
                     <figure key={image.image_id}>
@@ -30,5 +27,6 @@ export default class PresentTab extends Component {
                 ))}
             </div>
         );
-    }
-}
+};
+
+export default PresentTab;
