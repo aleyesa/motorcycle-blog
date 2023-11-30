@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-host: process.env.HOST || "lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-user: process.env.USER || "vgyb1e6tc22029gj",
-password: process.env.PASSWORD ||  "pkl6mmas5wvd31m9",
-database: process.env.DATABASE || "geei9sek17g9jznr" 
-})
+host: process.env.HOST || 'lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+user: process.env.USER || 'vgyb1e6tc22029gj',
+password: process.env.PASSWORD || 'pkl6mmas5wvd31m9',
+database: process.env.DATABASE ||  'geei9sek17g9jznr'
+});
 
 db.connect();
 
@@ -18,12 +18,11 @@ function createImages(image_name, image_src, callback) {
 
   const params = [image_name, image_src];
 
-  db.query(query, params, (error, results) => {
+  db.query(query, params, (error, result) => {
     if (error) {
-      callback(error);
-      return
+      return callback(error);
     }
-    callback(null, results.insertId);
+    callback(null, result.insertId);
   });
 
 }
@@ -36,8 +35,7 @@ function getImages(callback) {
 
   db.query(query, (error, results) => {
     if (error) {
-      callback(error);
-      return
+      return callback(error);
     }
     callback(null, results);
   });
