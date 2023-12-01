@@ -13,10 +13,8 @@ const ContentForm = () => {
         data.append('image', file);
         data.append('image_name', imageName);
 
-        const imageResults = await axios.post('/images', data);
+        const imageResults = await axios.post('/api/images', data);
         setImages([imageResults.data, ...images]);
-        // const contentResults = await axios.post('/contents', data);
-        // console.log(contentResults);
     }
 
     return (

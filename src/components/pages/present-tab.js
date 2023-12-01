@@ -9,9 +9,8 @@ const PresentTab = () => {
 
     useEffect(() => {
         (async() => {
-            const result = await axios.get('/images');
+            const result = await axios.get('/api/images');
             setImages(result.data.images);
-
         })();
     }, []);
 

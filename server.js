@@ -1,5 +1,4 @@
 const express = require('express');
-
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
@@ -11,13 +10,14 @@ const app = express();
 
 const db = require('./db');
 
-app.get('/images/:filename', (req, res) => {
+app.get('/api/images/:filename', (req, res) => {
   const filename = req.params.filename;
-  const readStream = fs.createReadStream(path.join(__dirname, 'uploads', filename));
+  console.log("test:" + __dirname);
+  const readStream = fs.createReadStream(path.join(__dirname, 'uploads', `${filename}`));
   readStream.pipe(res);
 });
 
-app.get('/images', (req, res) => {
+app.get('/api/images', (req, res) => {
   db.getImages((error, images) => {
     if (error) {
       return res.send({error: error.message});
@@ -27,13 +27,12 @@ app.get('/images', (req, res) => {
   });
 });
 
-app.post('/images', upload.single('image'), (req, res) => {
+app.post('/api/images', upload.single('image'), (req, res) => {
   const { filename, path } = req.file;
   console.log(req.file);
   console.log(req.body);
   const image_name = req.body.image_name;
-  const image_src = `/images/${filename}`;
-
+  const image_src = `/api/images/${filename}`;
 
   db.createImages(image_name, image_src , (error, insertId) => {
     if (error) {
@@ -49,21 +48,21 @@ app.post('/images', upload.single('image'), (req, res) => {
 
 });
 
-app.get('/contents', (req, res) => {
+app.get('/api/contents', (req, res) => {
 
 });
 
-app.post('/contents', (req, res) => {
+app.post('/api/contents', (req, res) => {
   res.send("Contents SENT!");
 
 });
 
+// FOR PRODUCTION
+// app.use(express.static(__dirname + '/dist/'));
 
-app.use(express.static(__dirname + '/dist/'));
-
-app.get(/.*/, function (req, res) {
-  res.sendFile(__dirname + '/dist/index.html');
-});
+// app.get(/.*/, function (req, res) {
+//   res.sendFile(__dirname + '/dist/index.html');
+// });
 
 app.listen(port);
 

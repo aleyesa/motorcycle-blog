@@ -14,8 +14,7 @@ export default class App extends Component {
     super(props);
 
     Icons();
-
-  }
+}
 
   render() {
     return (
@@ -31,7 +30,6 @@ export default class App extends Component {
               <Route path="/present" component={PresentTab}/>
               <Route path="/future" component={FutureTab}/>
               <Route path="/update" component={ContentUpdatePage}/>
-
             </Switch>
 
           </div>
