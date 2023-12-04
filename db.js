@@ -42,3 +42,22 @@ function getImages(callback) {
   
 }
 exports.getImages = getImages;
+
+function deleteImages(image_id, callback) {
+  const query = `
+  DELETE FROM images WHERE image_id=(?)
+  `;
+
+  const params = [image_id];
+
+  db.query(query, params, (error, result) => {
+    if(error) {
+      return callback(error);
+    }
+    callback(null, result);
+  });
+
+  
+} 
+
+exports.deleteImages = deleteImages;

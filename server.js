@@ -12,7 +12,6 @@ const db = require('./db');
 
 app.get('/api/images/:filename', (req, res) => {
   const filename = req.params.filename;
-  console.log("test:" + __dirname);
   const readStream = fs.createReadStream(path.join(__dirname, 'uploads', `${filename}`));
   readStream.pipe(res);
 });
@@ -29,8 +28,6 @@ app.get('/api/images', (req, res) => {
 
 app.post('/api/images', upload.single('image'), (req, res) => {
   const { filename, path } = req.file;
-  console.log(req.file);
-  console.log(req.body);
   const image_name = req.body.image_name;
   const image_src = `/api/images/${filename}`;
 
@@ -45,8 +42,22 @@ app.post('/api/images', upload.single('image'), (req, res) => {
     });
   });
 
-
 });
+
+app.delete(`/api/del/:image_id`, (req, res) => {
+  // const image_id = req.body.image_id;
+  const image_id = req.params.image_id;
+
+  db.deleteImages(image_id, (error, insertId) => {
+    if (error) {
+      return res.send({error: error.message});
+    }
+    res.send({insertId});
+  });
+});
+
+
+
 
 app.get('/api/contents', (req, res) => {
 
@@ -58,11 +69,11 @@ app.post('/api/contents', (req, res) => {
 });
 
 // FOR PRODUCTION
-app.use(express.static(__dirname + '/dist/'));
+// app.use(express.static(__dirname + '/dist/'));
 
-app.get(/.*/, function (req, res) {
-  res.sendFile(__dirname + '/dist/index.html');
-});
+// app.get(/.*/, function (req, res) {
+//   res.sendFile(__dirname + '/dist/index.html');
+// });
 
 app.listen(port);
 

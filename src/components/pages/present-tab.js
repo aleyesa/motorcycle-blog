@@ -14,11 +14,22 @@ const PresentTab = () => {
         })();
     }, []);
 
+    const delImageById = (image_id) => {
+        axios.delete(`/api/del/${image_id}`)
+        .then(data => {
+            return data;
+        });
+    }
+
     return (
         <div className="present_tab_wrapper">
             <ContentLayout />
             {images.map(image => (
-                <figure key={image.image_id}>
+                <figure key={image.image_id} accessKey={image.image_id}>
+                    <button onClick={() => { 
+                            return delImageById(image.image_id);
+                        }
+                    }>Delete</button>
                     <img className="present_tab_img" src={image.image_src}></img>
                     <figcaption>{image.image_name}</figcaption>
                 </figure>
