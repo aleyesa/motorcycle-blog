@@ -6,7 +6,6 @@ import HomeTab from "./pages/home-tab";
 import PastTab from "./pages/past-tab";
 import PresentTab from "./pages/present-tab";
 import FutureTab from "./pages/future-tab";
-import ContentUpdatePage from "./pages/content-update-page";
 import Icons from "../helpers/icons";
 
 export default class App extends Component {
@@ -29,7 +28,6 @@ export default class App extends Component {
               <Route path="/past" component={PastTab} />
               <Route path="/present" component={PresentTab}/>
               <Route path="/future" component={FutureTab}/>
-              <Route path="/update" component={ContentUpdatePage}/>
             </Switch>
 
           </div>

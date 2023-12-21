@@ -33,7 +33,7 @@ module.exports = {
       {
         test: /\.(mp4|webm)$/,
         loader: 'url?limit=10000',
-      },
+      }
     ],
   },
 
