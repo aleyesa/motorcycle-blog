@@ -1,11 +1,5 @@
 const mysql = require('mysql');
 
-// const db = mysql.createConnection({
-// host: process.env.HOST || 'lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-// user: process.env.USER || 'vgyb1e6tc22029gj',
-// password: process.env.PASSWORD || 'pkl6mmas5wvd31m9',
-// database: process.env.DATABASE ||  'geei9sek17g9jznr'
-// });
 const db = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.USER,
