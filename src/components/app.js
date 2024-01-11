@@ -6,6 +6,9 @@ import HomeTab from "./pages/home-tab";
 import PastTab from "./pages/past-tab";
 import PresentTab from "./pages/present-tab";
 import FutureTab from "./pages/future-tab";
+import Register from "./auth/register";
+import Login from "./auth/login";
+import Profile from "./auth/profile";
 import Icons from "../helpers/icons";
 
 export default class App extends Component {
@@ -20,10 +23,15 @@ export default class App extends Component {
       <div className="blog-container">
         <Router>
           <div>
+            
             <MainLayoutContainer />
 
             <Switch>
-              <Route path="/auth" />
+              <Route path="/register" component={Register}/>
+              <Route path="/auth" component={Login}/>
+              {sessionStorage.getItem("logged_in") == 1 &&
+                <Route path="/profile" component={Profile}/>
+              }
               <Route exact path="/" component={HomeTab}/>
               <Route path="/past" component={PastTab} />
               <Route path="/present" component={PresentTab}/>
