@@ -1,7 +1,11 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
+    faDoorClosed,
+    faDoorOpen,
+    faGear,
     faRightToBracket,
     faUser,
+    faPersonWalking,
     faBicycle,
     faMotorcycle,
     faChartLine,
@@ -11,8 +15,12 @@ import {
 
 const Icons = () => {
     return library.add(
+        faDoorClosed,
+        faDoorOpen,
+        faGear,
         faRightToBracket,
         faUser,
+        faPersonWalking,
         faBicycle,
         faMotorcycle,
         faChartLine,

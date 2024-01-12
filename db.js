@@ -1,3 +1,4 @@
+const { call } = require('file-loader');
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
@@ -246,26 +247,6 @@ function deletePresent(present_id, callback) {
 } 
 exports.deletePresent = deletePresent;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getPastById(past_id, callback) {
   const query = `
   SELECT * 
@@ -352,24 +333,6 @@ function deletePast(past_id, callback) {
   });
 } 
 exports.deletePast = deletePast;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function getFutureById(future_id, callback) {
   const query = `
@@ -505,15 +468,21 @@ function createLoginSession(username, password, callback) {
 
   const params = [username, password];
 
-  db.query(query, params, (error, response) => {
-    if (error) {
-      return callback(error);
-    }
-    callback(null, {
-      editor_id: response[0].editor_id,
-      logged_in: response[0].logged_in
+  
+    db.query(query, params, (error, response) => {
+      
+      if (response == "" || error) {
+        return callback("invalid username or password");
+      } else {
+        callback(null, {
+          editor_id: response[0].editor_id,
+          logged_in: response[0].logged_in
+      });
+      }
+
+
     });
-  });
+
 }
 exports.createLoginSession = createLoginSession;
 
@@ -584,7 +553,21 @@ function getEditors(callback) {
 }
 exports.getEditors = getEditors;
 
-exports.createEditorAccount = createEditorAccount;
+function getAllComments(callback) {
+  const query = `
+  SELECT *
+  FROM comments; 
+  `;
+
+  db.query(query, (error, response) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, response);
+
+  });
+}
+exports.getAllComments = getAllComments;
 
 function getMainComments(callback) {
   const query = `

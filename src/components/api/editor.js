@@ -49,7 +49,12 @@ export function validateLogin(username, password) {
             jwt: response.data.jwt
         };
 
-        updateLoginStatus(authentication);
+        if(response.data.invalid_credentials == true){
+            console.log(response.data);
+        } else {
+         updateLoginStatus(authentication);
+        }
+
         
     })
     .catch(error => {
@@ -86,9 +91,9 @@ export function updateLoginStatus(authentication) {
             sessionStorage.setItem("editor_id", editorData.editor_id);
             sessionStorage.setItem("logged_in", editorData.logged_in);
             sessionStorage.setItem("jwt", authentication.jwt);
-        } else {
-            sessionStorage.clear();
         }
+
+        
         
     })
     .catch(error => {

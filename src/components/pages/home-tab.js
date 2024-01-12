@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
 export default class HomeTab extends Component {
-    constructor() {
+    constructor(props) {
 
-        super();
+        super(props);
 
+        this.state = {
+
+        }
     }
 
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 import { validateLogin, authentication } from "../api/editor";
 
 export default class Login extends Component {
@@ -9,11 +10,11 @@ export default class Login extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            redirect: false
         }
 
         this.login = this.login.bind(this);
-        
     }
 
     login = (event) => {
@@ -26,13 +27,20 @@ export default class Login extends Component {
             console.log("Need username and password");
         }
 
+
+        
+
     }
 
     render() {
     return (
 
         <div>
-            <form onSubmit={this.login}>
+            <form onSubmit={e => {
+                // e.preventDefault();
+                this.login(e);
+                }
+                }>
                 <input
                     type="text"
                     onChange={e => this.setState({ username: e.target.value})}
@@ -41,7 +49,8 @@ export default class Login extends Component {
                     type="text"
                     onChange={e => this.setState({ password: e.target.value})}
                 />
-                <button type="submit"  >login</button>
+                <button type="submit">login</button>
+
             </form>
 
             <a href="/register">Create Editor Account</a>
@@ -49,6 +58,7 @@ export default class Login extends Component {
         </div>
         
         );
+
     }
     
         

@@ -1,5 +1,11 @@
 import axios from "axios";
 
+export function getAllComments() {
+
+    return axios.get('/api/all/comments');
+
+};
+
 export function getMainComments() {
 
     return axios.get('/api/main/comments');

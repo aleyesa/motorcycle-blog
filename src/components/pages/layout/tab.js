@@ -230,7 +230,6 @@ export default class Tab extends Component {
                             : 
                             // show edit mode when logged in
                             <div className="edit_tab_section">
-                                {/* <div className="content-wrapper"> */}
                                     {tab_param_name.image_ref_id !== 1 && <button type="button" onClick={e => this.delATabSection(tab_param_name)}>X</button>}     
                                     <form onSubmit={ (e) => {
                                         e.preventDefault();
@@ -293,7 +292,6 @@ export default class Tab extends Component {
                                     }
 
                                     </form>
-                                {/* </div> */}
                             </div> 
                             }
                     </div>

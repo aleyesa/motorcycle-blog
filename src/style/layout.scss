@@ -1,0 +1,84 @@
+.app-wrapper {
+    
+    display: flex;
+    flex-direction: column;
+
+    .main-wrapper {
+        display:flex;
+        flex-direction: column;
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px dashed black;
+            padding: 0px 5px;
+
+            .logo {
+                color: black;
+            }
+
+            .gear {
+                visibility: hidden;
+            }
+
+            .login,
+            .logout {
+                color: black;
+            }
+
+            .login .door-open,
+            .logout .door-open,
+            .login .profile,
+            .logout .profile {
+                display:none;
+            }
+
+            .login:hover,
+            .logout:hover {
+                .door-closed {
+                    display:none;
+                }
+                .door-open {
+                    display: inline;
+                }
+            }
+
+        }
+
+        .tabs-wrapper {
+            display: flex;
+
+            .home-tab,
+            .past-tab,
+            .present-tab,
+            .future-tab {
+                
+                display: flex;
+                align-items: center;
+
+                a {
+                    transform: rotate(-90deg);
+                    border: 2px solid black;
+                }
+            
+            }
+
+            .tab {
+                background-color: grey;
+            }
+
+
+       
+
+
+
+        }
+
+
+
+
+
+
+    }
+}

@@ -8,17 +8,9 @@ const port = process.env.PORT || 8080;
 const app = express();
 const bodyParser = require('body-parser');
 const db = require('./db');
-
-
-
-
 const directoryPath = path.join(__dirname, 'uploads');
-
 const jwt = require('jsonwebtoken');
-
 const JWT_SECRET = process.env.JWT_SECRET;
-
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -549,12 +541,15 @@ app.post('/api/editor/login', (req, res) => {
   const password = req.body.password;
 
   db.createLoginSession(username, password, (error, response) => {
-
-    if (response.length === 0) {
+  
+    if(!response) {
+      res.send({ invalid_credentials: true });
+    } else if (response.length === 0) {
 
       res.send(response.logged_in);
 
-    } else {
+    }
+    else  {
       if (error) {
 
         return res.send({error: error});
@@ -653,6 +648,20 @@ app.delete('/api/editor/delete/:editor_id', (req, res) => {
   
 });
 
+// Comments
+app.get('/api/all/comments', (req, res) => {
+
+  db.getAllComments((error, response) => {
+    if(error) {
+      res.send(error);
+    }
+
+    res.send(response);
+
+  });
+
+});
+
 app.get('/api/main/comments', (req, res) => {
 
       db.getMainComments((error, response) => {
@@ -695,8 +704,6 @@ app.post('/api/create/comment', (req, res) => {
       });
   
 });
-
-
 
 // FOR PRODUCTION
 app.use(express.static(__dirname + '/dist/'));

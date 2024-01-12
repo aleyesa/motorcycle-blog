@@ -1,6 +1,8 @@
-@import "./present_tab.scss";
-@import "./home.scss";
+@import "./nav.scss";
+@import "./layout.scss";
 
+@import "./tab.scss";
+@import "./home.scss";
 html {
     font-size: 62.5%; // 1rem is 10px
 }
