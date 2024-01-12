@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import { validateLogin, authentication } from "../api/editor";
+import Main from "../main";
+
 
 export default class Login extends Component {
     constructor(props) {
@@ -22,7 +24,7 @@ export default class Login extends Component {
 
         if(this.state.username !== "" & this.state.password !== ""){
             validateLogin(this.state.username, this.state.password);
-            this.props.history.push("/");
+            this.setState({redirect: true});
         } else {
             console.log("Need username and password");
         }
@@ -54,6 +56,17 @@ export default class Login extends Component {
             </form>
 
             <a href="/register">Create Editor Account</a>
+            
+            {this.state.redirect === true && 
+            <Redirect
+                to={{
+                    pathname: "/",
+                    state: { test: "cookies" }
+                }}
+            />
+            }
+            
+            
          
         </div>
         

@@ -1,7 +1,10 @@
+
+
 .app-wrapper {
     
     display: flex;
     flex-direction: column;
+    max-width: 1920px;
 
     .main-wrapper {
         display:flex;
@@ -56,16 +59,14 @@
                 
                 display: flex;
                 align-items: center;
-
-                a {
-                    transform: rotate(-90deg);
-                    border: 2px solid black;
-                }
-            
-            }
-
-            .tab {
                 background-color: grey;
+                
+                .rotate {
+                    transform: rotate(-90deg);
+                }
+
+                
+            
             }
 
 
@@ -73,6 +74,17 @@
 
 
 
+        }
+
+        .comment-section {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+
+            .fa-comment {
+                height: 10px;
+                width: 10px;
+            }
         }
 
 

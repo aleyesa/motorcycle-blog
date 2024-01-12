@@ -1,14 +1,7 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
-import MainLayoutContainer from "./pages/layout/main-layout-container";
-import HomeTab from "./pages/home-tab";
-import PastTab from "./pages/past-tab";
-import PresentTab from "./pages/present-tab";
-import FutureTab from "./pages/future-tab";
-import Register from "./auth/register";
-import Login from "./auth/login";
-import Profile from "./auth/profile";
+import Main from "./main";
 import Icons from "../helpers/icons";
 
 export default class App extends Component {
@@ -21,17 +14,18 @@ export default class App extends Component {
   render() {
     return (
         <Router>
-            <MainLayoutContainer />
             <Switch>
-              <Route path="/register" component={Register}/>
-              <Route path="/auth" component={Login}/>
+           
+              <Route path="/register"><Main show={{tabSection: false, register: true}} /></Route>
+              <Route path="/auth"><Main show={{tabSection: false, login: true}} /></Route>
               {sessionStorage.getItem("logged_in") == 1 &&
-                <Route path="/profile" component={Profile}/>
+                <Route path="/profile"><Main showTab={{tabSection: false, profile: true}} /></Route>
               }
-              {/* <Route exact path="/" component={HomeTab}/> */}
-              {/* <Route path="/past" component={PastTab} />
-              <Route path="/present" component={PresentTab}/>
-              <Route path="/future" component={FutureTab}/> */}
+              <Route exact path="/"><Main show={{tabSection: true, homeTab: true}} /></Route>
+              <Route path="/past"><Main show={{tabSection: true, pastTab: true}} /></Route>
+              <Route path="/present"><Main show={{tabSection: true, presentTab: true}} /></Route>
+              <Route path="/future"><Main show={{tabSection: true, futureTab: true}} /></Route>
+
             </Switch>
         </Router>
     );

@@ -1,4 +1,3 @@
-const { call } = require('file-loader');
 const mysql = require('mysql');
 
 const db = mysql.createConnection({

@@ -216,12 +216,12 @@ export default class Tab extends Component {
                             <div className="tab_section">
                                 {
                                     <div key={tab_param_name[this.state.tab_name_id]} accessKey={tab_param_name[this.state.tab_name_id]}>
+                                        <h1>{tab_param_name.content_title}</h1>
                                         <figure key={tab_param_name.image_id} accessKey={tab_param_name.image_id}>
                                             <img className="tab_img" src={tab_param_name.image_src}></img>
                                             <figcaption>{tab_param_name.image_name}</figcaption>
                                         </figure>     
                                         <div key={tab_param_name.content_id} accessKey={tab_param_name.content_id}>
-                                        <h1>{tab_param_name.content_title}</h1>
                                             <p>{tab_param_name.content_details}</p>
                                         </div>
                                     </div>

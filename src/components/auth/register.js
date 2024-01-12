@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { createEditorAccount, validateLogin } from "../api/editor";
 
 export default class Register extends Component {
@@ -21,7 +20,8 @@ export default class Register extends Component {
                 e.preventDefault();
                 console.log(this.state.username);
                 console.log(this.state.password);
-                createEditorAccount(this.state.username, this.state.password)
+                createEditorAccount(this.state.username, this.state.password);
+                this.props.history.push("/");
                 }}>
                 <input
                     type="text"
