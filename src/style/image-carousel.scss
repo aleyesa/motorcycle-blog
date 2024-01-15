@@ -1,0 +1,76 @@
+
+
+
+
+.home-section,
+.past-section,
+.present-section,
+.future-section {
+    display: flex;
+    flex-direction: column;
+    .tab-data-section {
+        display: flex;
+
+        .image-carousel { 
+            display: flex;
+            div {
+                display: flex;
+                flex-direction: column;
+
+                    .selected-img {            
+                        img {
+                            margin-left: 5px;
+                            height: 500px;
+                            width: 500px;
+                        }
+                    
+                        figcaption {
+                            background-color: rgb(238, 238, 238);
+                            text-align: right;
+                            padding: 5px;
+                            margin-left: 5px;
+                            margin-bottom: 5px;
+                        }
+                    }
+            
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    div{
+                        figure {
+                            .small-tab-img {
+                                margin-left: 5px;
+                                height: 50px;
+                                width: 50px;
+                            }
+                        }       
+                    }
+                }
+            }
+            div {
+
+                    h2,
+                    p {
+                        margin-left: 5px;
+                    }
+
+                    h2 {
+                        background-color: rgb(238, 238, 238);
+                    }
+        
+                    p {
+                        background-color: white;
+                        margin-top: 5px;
+                    }        
+            }
+    
+        }
+    }
+}
+
+
+
+
+
+
+

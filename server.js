@@ -196,6 +196,102 @@ app.delete('/api/content/:content_id', (req, res) => {
   });
 });
 
+// Home
+app.get('/api/past/:home_id', (req, res) => {
+  const home_id = req.params.home_id;
+
+  db.getHomeById(home_id, (error, home) => {
+    if (error) {
+      return res.send({error: error.message});
+    }
+    res.send({home});
+  });
+});
+
+app.get('/api/home', (req, res) => {
+  db.getHome((error, home) => {
+    if (error) {
+      return res.send({error: error.message});
+    }
+    res.send({home});
+  });
+});
+
+app.post('/api/home', (req, res) => {
+  const image_ref_id = req.body.image_ref_id;
+  const content_ref_id = req.body.content_ref_id;
+  const headerToken = req.headers.authorization.slice(7);
+
+  jwt.verify(headerToken, JWT_SECRET, function(err, decoded) {
+
+    if (err) {
+
+      console.log(err);
+      res.send("Not authorized");
+
+    } else 
+
+    db.createHome(image_ref_id, content_ref_id, (error, insertId) => {
+      if (error) {
+        return res.send({error: error});
+      }
+      res.send({
+        home_id: insertId,
+        image_ref_id,
+        content_ref_id
+      });
+    });
+
+  });
+});
+
+app.put('/api/home/:home_id', (req, res) => {
+  const home_id = req.body.home_id;
+  const image_id = req.body.image_ref_id;
+  const content_id = req.body.content_ref_id;
+  const headerToken = req.headers.authorization.slice(7);
+
+  jwt.verify(headerToken, JWT_SECRET, function(err, decoded) {
+
+    if (err) {
+
+      console.log(err);
+      res.send("Not authorized");
+
+    } else 
+
+    db.updateHome(home_id, image_id, content_id, (error, results) => {
+      if (error) {
+        return res.send({error: error});
+      }
+      res.send({results});
+    });
+
+  });
+});
+
+app.delete('/api/home/:home_id', (req, res) => {
+  const home_id = req.params.home_id;
+  const headerToken = req.headers.authorization.slice(7);
+
+  jwt.verify(headerToken, JWT_SECRET, function(err, decoded) {
+
+    if (err) {
+
+      console.log(err);
+      res.send("Not authorized");
+
+    } else 
+
+    db.deleteHome(home_id, (error, insertId) => {
+      if (error) {
+        return res.send({error: error.message});
+      }
+      res.send({insertId});
+      });
+    });
+});
+
 // Past
 app.get('/api/past/:past_id', (req, res) => {
   const past_id = req.params.past_id;

@@ -6,7 +6,7 @@ function PastTab() {
 
     return (
 
-        <div>
+        <div className="past-section">
             <Tab tab_name="past" tab_path="past" tab_name_id="past_id"/>
         </div>
         

@@ -1,0 +1,74 @@
+
+
+
+
+
+
+.home-section,
+.past-section,
+.present-section,
+.future-section {
+    flex-direction: column; 
+   
+   .tab-data-section {
+        display: flex;
+        flex-direction: column;
+
+        button {
+            padding: 2px;
+        }
+        .edit-mode-btn,
+        .new-section-btn {
+            margin: 5px;
+        }
+        .edit-tab-img {
+            height: 250px;
+            width: 250px;
+        }
+            .edit-tab-section {
+                display: flex;
+                flex-direction: column;
+                margin: 5px;
+
+                    .tab-section-container {
+                        display: flex;
+                        flex-direction: column;
+                        margin: 5px;
+                        border: 2px solid black;
+                        background-color: white;
+                        .new-image {
+                            display: flex;
+                            flex-direction: column;
+                            .edit-tab-img {
+                                height: 250px;
+                                width: 250px;
+                            }
+                        }
+                        .img-wrapper {
+                            display: flex;
+                            flex-direction: column;
+                            .edit-tab-img {
+                                height: 250px;
+                                width: 250px;
+                            }
+                }
+
+                .content-section {
+                    display: flex;
+                    flex-direction: column;
+
+                    input,
+                    textarea {
+                        background-color: rgb(238, 238, 238);
+                    }
+                }
+                }
+            }  
+        
+
+    }
+}
+
+
+
+

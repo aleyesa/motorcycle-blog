@@ -1,0 +1,56 @@
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border-top: 2px solid black;
+
+    button {
+        padding: 2px;
+    }
+
+    h2 {
+        margin: 5px 0px;
+    }
+
+    .editor-info {
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin: 5px;
+        }
+
+
+
+    }
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        
+        label {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+
+            input {
+                margin-left: 10px
+            }
+        }
+
+        button {
+            margin: 20px;
+            align-self: stretch;
+        }
+    }
+
+    .nav-home {
+        color: black;
+        text-decoration: none;
+        align-self: flex-start;
+        margin-bottom: 5px;
+    }
+}

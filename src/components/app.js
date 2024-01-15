@@ -19,7 +19,7 @@ export default class App extends Component {
               <Route path="/register"><Main show={{tabSection: false, register: true}} /></Route>
               <Route path="/auth"><Main show={{tabSection: false, login: true}} /></Route>
               {sessionStorage.getItem("logged_in") == 1 &&
-                <Route path="/profile"><Main showTab={{tabSection: false, profile: true}} /></Route>
+                <Route path="/profile"><Main show={{tabSection: false, profile: true}} /></Route>
               }
               <Route exact path="/"><Main show={{tabSection: true, homeTab: true}} /></Route>
               <Route path="/past"><Main show={{tabSection: true, pastTab: true}} /></Route>

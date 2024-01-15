@@ -10,7 +10,10 @@ import {
     faMotorcycle,
     faChartLine,
     faHouse,
-    faComment
+    faCommentDots,
+    faMinus,
+    faPlus,
+    faAngleLeft
 } from "@fortawesome/free-solid-svg-icons";
 
 const Icons = () => {
@@ -25,8 +28,10 @@ const Icons = () => {
         faMotorcycle,
         faChartLine,
         faHouse,
-        faComment
+        faCommentDots,
+        faMinus,
+        faPlus,
+        faAngleLeft
     );
 };
-
 export default Icons;

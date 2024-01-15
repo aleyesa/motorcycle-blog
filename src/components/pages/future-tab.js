@@ -6,7 +6,7 @@ function FutureTab() {
 
     return (
 
-        <div>
+        <div className="future-section">
             <Tab tab_name="future" tab_path="future" tab_name_id="future_id"/>
         </div>
         

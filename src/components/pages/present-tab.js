@@ -6,7 +6,7 @@ function PresentTab() {
 
     return (
 
-        <div>
+        <div className="present-section">
             <Tab tab_name="presents" tab_path="present" tab_name_id="present_id"/>
         </div>
         

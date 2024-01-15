@@ -159,11 +159,11 @@ function deleteContent(content_id, callback) {
 } 
 exports.deleteContent = deleteContent;
 
-function getPresentById(present_id, callback) {
+function getHomeById(home_id, callback) {
   const query = `
   SELECT * 
-  FROM present
-  WHERE present_id=(${present_id})
+  FROM home
+  WHERE home_id=(${home_id})
   `;
 
   db.query(query, (error, results) => {
@@ -173,16 +173,16 @@ function getPresentById(present_id, callback) {
     callback(null, results);
   });
 }
-exports.getPresentById = getPresentById;
+exports.getHomeById = getHomeById;
 
-function getPresents(callback) {
+function getHome(callback) {
   const query = `
   SELECT *
-  FROM present p
+  FROM home h
   JOIN images i
-  ON i.image_id = p.image_ref_id
+  ON i.image_id = h.image_ref_id
   JOIN contents c
-  ON c.content_id = p.content_ref_id
+  ON c.content_id = h.content_ref_id
   `;
 
   db.query(query, (error, results) => {
@@ -193,12 +193,12 @@ function getPresents(callback) {
   });
   
 }
-exports.getPresents = getPresents;
+exports.getHome = getHome;
 
-function createPresent(image_id, content_id, callback) {
+function createHome(image_id, content_id, callback) {
 
   const query = `
-    INSERT INTO present(image_ref_id, content_ref_id)
+    INSERT INTO home(image_ref_id, content_ref_id)
     VALUES (?, ?)
   `;
 
@@ -212,13 +212,13 @@ function createPresent(image_id, content_id, callback) {
   });
 
 }
-exports.createPresent = createPresent;
+exports.createHome = createHome;
 
-function updatePresent(present_id, image_id, content_id, callback) {
+function updateHome(home_id, image_id, content_id, callback) {
   const query = `
-    UPDATE present
+    UPDATE home
     SET image_ref_id = (${image_id}), content_ref_id = (${content_id})
-    WHERE present_id = (${present_id})
+    WHERE home_id = (${home_id})
   `
 
   db.query(query, (error, result) => {
@@ -228,14 +228,14 @@ function updatePresent(present_id, image_id, content_id, callback) {
     callback(null, result);
   });
 }
-exports.updatePresent = updatePresent;
+exports.updateHome = updateHome;
 
-function deletePresent(present_id, callback) {
+function deleteHome(home_id, callback) {
   const query = `
-  DELETE FROM present WHERE present_id=(?)
+  DELETE FROM home WHERE home_id=(?)
   `;
 
-  const params = [present_id];
+  const params = [home_id];
 
   db.query(query, params, (error, result) => {
     if(error) {
@@ -244,7 +244,7 @@ function deletePresent(present_id, callback) {
     callback(null, result);
   });
 } 
-exports.deletePresent = deletePresent;
+exports.deleteHome = deleteHome;
 
 function getPastById(past_id, callback) {
   const query = `
@@ -332,6 +332,93 @@ function deletePast(past_id, callback) {
   });
 } 
 exports.deletePast = deletePast;
+
+function getPresentById(present_id, callback) {
+  const query = `
+  SELECT * 
+  FROM present
+  WHERE present_id=(${present_id})
+  `;
+
+  db.query(query, (error, results) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, results);
+  });
+}
+exports.getPresentById = getPresentById;
+
+function getPresents(callback) {
+  const query = `
+  SELECT *
+  FROM present p
+  JOIN images i
+  ON i.image_id = p.image_ref_id
+  JOIN contents c
+  ON c.content_id = p.content_ref_id
+  `;
+
+  db.query(query, (error, results) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, results);
+  });
+  
+}
+exports.getPresents = getPresents;
+
+function createPresent(image_id, content_id, callback) {
+
+  const query = `
+    INSERT INTO present(image_ref_id, content_ref_id)
+    VALUES (?, ?)
+  `;
+
+  const params = [image_id, content_id];
+
+  db.query(query, params, (error, result) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, result.insertId);
+  });
+
+}
+exports.createPresent = createPresent;
+
+function updatePresent(present_id, image_id, content_id, callback) {
+  const query = `
+    UPDATE present
+    SET image_ref_id = (${image_id}), content_ref_id = (${content_id})
+    WHERE present_id = (${present_id})
+  `
+
+  db.query(query, (error, result) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, result);
+  });
+}
+exports.updatePresent = updatePresent;
+
+function deletePresent(present_id, callback) {
+  const query = `
+  DELETE FROM present WHERE present_id=(?)
+  `;
+
+  const params = [present_id];
+
+  db.query(query, params, (error, result) => {
+    if(error) {
+      return callback(error);
+    }
+    callback(null, result);
+  });
+} 
+exports.deletePresent = deletePresent;
 
 function getFutureById(future_id, callback) {
   const query = `

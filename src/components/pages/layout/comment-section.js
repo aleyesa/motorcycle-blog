@@ -50,14 +50,6 @@ export default class CommentSection extends Component {
 
         return (
             <div className="comments-section">
-            { this.state.comments.map( comment=> 
-            
-                <div accessKey={comment.comment_id} key={comment.comment_id}>
-                    <p>{comment.commentor}</p>
-                    <p>{comment.comment}</p>
-                </div>
-               
-             )}
                 <div >
                     <form onSubmit={e => {
                         e.preventDefault();
@@ -74,9 +66,18 @@ export default class CommentSection extends Component {
                             type="text"
                             onChange={e => this.setState({ comment: e.target.value})}
                         />
-                        <button type="submit"  >Create Comment</button>
+                        <button type="submit"  >Comment</button>
                     </form>
                 </div>
+                { this.state.comments.map( comment=> 
+            
+                <div className="comment" accessKey={comment.comment_id} key={comment.comment_id}>
+                    <p className="commentor">{comment.commentor}</p>
+                    <p className="message">{comment.comment}</p>
+                </div>
+               
+                )}
+                
             </div>
         );
     }

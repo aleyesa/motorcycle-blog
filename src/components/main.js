@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { updateLoginStatus } from "./api/editor";
-import CommentSection from "./pages/layout/comment-section";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomeTab from "./pages/home-tab";
 import PastTab from "./pages/past-tab";
@@ -8,6 +7,9 @@ import PresentTab from "./pages/present-tab";
 import FutureTab from "./pages/future-tab";
 import Register from "./auth/register";
 import Login from "./auth/login";
+import Profile from "./auth/profile"; 
+import CommentSection from "./pages/layout/comment-section";
+
 
 export default class Main extends Component {
 
@@ -32,6 +34,7 @@ export default class Main extends Component {
             showProfile: this.props.show.profile,
             showComments: false
         }
+
     }
 
     componentDidMount() {
@@ -49,9 +52,12 @@ export default class Main extends Component {
             <div className="main-wrapper">
                 <div className="header">
                     <a href="/" className="logo">
-                        <FontAwesomeIcon icon="fa-solid fa-person-walking" />
-                        <FontAwesomeIcon icon="fa-solid fa-bicycle" />
-                        <FontAwesomeIcon icon="fa-solid fa-motorcycle" />
+                        <div>
+                            <FontAwesomeIcon icon="fa-solid fa-person-walking" />
+                            <FontAwesomeIcon icon="fa-solid fa-bicycle" />
+                            <FontAwesomeIcon icon="fa-solid fa-motorcycle" />
+                        </div>
+                        <FontAwesomeIcon icon="fa-solid fa-house" />
                     </a>
                     <h1>My Motorcycle Progression<FontAwesomeIcon icon="fa-solid fa-chart-line" /></h1>
                     {sessionStorage.length === 0 || sessionStorage.getItem("logged_in") == 0 ?
@@ -80,51 +86,48 @@ export default class Main extends Component {
                 </div>
 
                 {this.state.showTabSection === true && 
-                    <div>
-                        <div className="tabs-wrapper">
+                    <div className="tab-wrapper">
+                        <div className="tabs-data-wrapper">
                     
-                        
-                            <a href="/" className="home-tab" ><span className="rotate">Home</span></a>
+                            
+                                <a className="home-tab" href="/" ><span>Home</span></a>
+                            
+                                {this.state.showHomeTab === true && <HomeTab />}
+                            
 
+                                <a className="past-tab" href="/past" ><span>Past</span></a>
 
-                        
-                            {this.state.showHomeTab === true && <HomeTab />}
-
-                            <a href="/past" className="past-tab"><span className="rotate">Past</span></a>
-
-
-            
-                            {this.state.showPastTab === true && <PastTab />}
-
+                                {this.state.showPastTab === true && <PastTab />}
                 
-                            <a href="/present" className="present-tab"><span className="rotate">Present</span></a>
+                                <a className="present-tab" href="/present" ><span>Present</span></a>
 
-            
-
-                            {this.state.showPresentTab === true && <PresentTab />}
-
+                                {this.state.showPresentTab === true && <PresentTab />}
         
-                            <a href="/future" className="future-tab"><span className="rotate">Future</span></a>
-            
-                            {this.state.showFutureTab === true && <FutureTab />}
-
+                                <a className="future-tab" href="/future" ><span>Future</span></a>
+                
+                                {this.state.showFutureTab === true && <FutureTab />}
 
                         </div>
-                        <div className="comment-section">
-                            <button className="comment-btn" onClick={ e => {
+                        <div className="comment-section"> 
+                        <div className="comment-btn" 
+                                onClick={ e => {
                                 
-                                {this.state.showComments === false? 
-                                    this.setState({showComments: true})
+                                    {this.state.showComments === false? 
+                                        this.setState({showComments: true})
+                                    :
+                                        this.setState({showComments: false})
+                                    }
+                                    }
+                                }>
+                                <FontAwesomeIcon icon="fa-solid fa-comment-dots" />
+                                {this.state.showComments === false ?
+                                    <FontAwesomeIcon icon="fa-solid fa-plus" />
                                 :
-                                    this.setState({showComments: false})
+                                    <FontAwesomeIcon icon="fa-solid fa-minus" />
                                 }
-                                }
-                            }> 
-                                <FontAwesomeIcon icon="fa-solid fa-comment" />
-                            </button>
-                            {this.state.showComments === true &&
-                                <CommentSection />
-                            }
+                        </div>
+      
+                        {this.state.showComments === true && <CommentSection />}
                         </div>
                         
                     </div>

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-
-import { validateLogin, authentication } from "../api/editor";
-import Main from "../main";
-
+import { validateLogin } from "../api/editor";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Login extends Component {
     constructor(props) {
@@ -37,37 +34,31 @@ export default class Login extends Component {
     render() {
     return (
 
-        <div>
+        <div className="login-section">
+            <a className="nav-home" href="/"><FontAwesomeIcon icon="fa-solid fa-angle-left" />Back to Home</a>
+
             <form onSubmit={e => {
-                // e.preventDefault();
                 this.login(e);
                 }
                 }>
+                <label>Username
                 <input
                     type="text"
                     onChange={e => this.setState({ username: e.target.value})}
                 />
+                </label>
+                <label>Password
                 <input 
-                    type="text"
+                    type="password"
                     onChange={e => this.setState({ password: e.target.value})}
                 />
+                </label>
                 <button type="submit">login</button>
 
             </form>
 
-            <a href="/register">Create Editor Account</a>
-            
-            {this.state.redirect === true && 
-            <Redirect
-                to={{
-                    pathname: "/",
-                    state: { test: "cookies" }
-                }}
-            />
-            }
-            
-            
-         
+            <a className="nav-register" href="/register">Create Editor Account</a>
+               
         </div>
         
         );

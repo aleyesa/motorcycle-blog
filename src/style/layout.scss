@@ -1,10 +1,9 @@
-
-
 .app-wrapper {
     
     display: flex;
     flex-direction: column;
-    max-width: 1920px;
+    // min-width: 1200px;
+    // max-width: 1920px;
 
     .main-wrapper {
         display:flex;
@@ -14,10 +13,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 2px dashed black;
-            padding: 0px 5px;
+            border-top: 2px solid black;
+            padding: 5px 5px;
+            background-color: white;
 
             .logo {
+                display: flex;
+                flex-direction: column;
                 color: black;
             }
 
@@ -26,7 +28,8 @@
             }
 
             .login,
-            .logout {
+            .logout,
+            .fa-gear {
                 color: black;
             }
 
@@ -49,43 +52,199 @@
 
         }
 
-        .tabs-wrapper {
-            display: flex;
+        .tab-wrapper {
 
-            .home-tab,
-            .past-tab,
-            .present-tab,
-            .future-tab {
-                
+            display: flex;
+            flex-direction: column;
+
+            .tabs-data-wrapper {
                 display: flex;
-                align-items: center;
-                background-color: grey;
-                
-                .rotate {
-                    transform: rotate(-90deg);
+                flex-direction: column;
+   
+                .home-tab,
+                .past-tab,
+                .present-tab,
+                .future-tab {
+                    
+                    display: flex;
+                    flex-direction: column;
+
+                    align-items: center;
+                    background-color: white;
+                    border: 2px solid black;
+                    border-radius: 5px 0px;
+                    color: black;
+                    text-decoration: none;
+
                 }
 
-                
-            
+                .home-tab:hover,
+                .past-tab:hover,
+                .present-tab:hover,
+                .future-tab:hover {
+                    background-color:rgb(238, 238, 238);
+                    
+                }
+
+                .home-tab:focus,
+                .past-tab:focus,
+                .present-tab:focus,
+                .future-tab:focus {
+                    color: black;
+                }
+
+                .home-section,
+                .past-section,
+                .present-section,
+                .future-section {
+
+                    background-image: url("../../static/assets/images/background-image/moto-background.jpg");
+                    background-repeat: no-repeat;
+                    background-position: top;
+                    background-size: cover;
+                    background-attachment: fixed;
+                    border: 2px solid black;
+                    border-radius: 0px 5px;
+        
+                    
+                }
+
+                .tab-data-section {
+                    padding: 5px;
+                }
+
+
+        
+
+
+
             }
-
-
-       
-
-
-
         }
 
         .comment-section {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
+            bottom: 10px;
+            right: 10px;
 
-            .fa-comment {
-                height: 10px;
-                width: 10px;
+            .comment-btn {
+                background-color: black;
+                border-radius: 5px 0px;
+            }
+    
+            .fa-comment-dots,
+            .fa-minus,
+            .fa-plus {
+                color: white;
+                margin: 2px;
+                
             }
         }
+
+        .comments-section {
+            align-self: center;
+            border: 2px solid rgb(238, 238, 238);
+            border-radius: 5px 0px;
+            background-color: white;
+
+            form {
+                background-color: rgb(238, 238, 238);
+                padding: 10px;
+            }
+
+            .comment {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-bottom: 2px solid rgb(238, 238, 238);
+                padding: 10px;
+
+                .message {
+                    align-self: flex-end;
+                }
+            }
+
+
+        }
+
+        .login-section {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 10px;
+            border-top: 2px solid black;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+                
+                label {
+                    display: flex;
+                    align-items: center;
+                    margin: 10px;
+
+                    input {
+                        margin-left: 10px
+                    }
+                }
+
+                button {
+                    margin: 20px;
+                    align-self: stretch;
+                }
+            }
+
+            .nav-home {
+                color: black;
+                text-decoration: none;
+                align-self: flex-start;
+            }
+
+            .nav-register {
+                color: black;
+                text-decoration: none;
+                align-self: flex-end;
+            }
+
+        }
+
+        .register-section {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 10px;
+            border-top: 2px solid black;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+                
+                label {
+                    display: flex;
+                    align-items: center;
+                    margin: 10px;
+
+                    input {
+                        margin-left: 10px
+                    }
+                }
+
+                button {
+                    margin: 20px;
+                    align-self: stretch;
+                }
+            }
+
+            .nav-home {
+                color: black;
+                text-decoration: none;
+                align-self: flex-start;
+            }
+
+        }
+
 
 
 
