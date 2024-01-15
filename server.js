@@ -11,6 +11,7 @@ const db = require('./db');
 const directoryPath = path.join(__dirname, 'uploads');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
+const s3 = require('./s3');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,7 +31,7 @@ app.get('/api/image/id/:image_id', (req, res) => {
 
 app.get('/api/image/:filename', (req, res) => {
   const filename = req.params.filename;
-  const readStream = fs.createReadStream(path.join(__dirname, 'uploads', `${filename}`));
+  const readStream = s3.getFileStream(filename);
   readStream.pipe(res);
 });
 
@@ -44,11 +45,14 @@ app.get('/api/images', (req, res) => {
   });
 });
 
-app.post('/api/image', upload.single('image_file'), (req, res) => {
-  const { filename, path } = req.file;
+app.post('/api/image', upload.single('image_file'), async (req, res) => {
+  const { filename } = req.file;
+
   const image_name = req.body.image_name;
   const image_src = `/api/image/${filename}`;  
   const headerToken = req.headers.authorization.slice(7);
+
+  await s3.uploadFile(req.file);
 
   jwt.verify(headerToken, JWT_SECRET, function(err, decoded) {
 
@@ -76,6 +80,7 @@ app.post('/api/image', upload.single('image_file'), (req, res) => {
 app.delete(`/api/image/delete/:image_id`, (req, res) => {
   const image_id = req.params.image_id;
   const image_src = req.body.image_src;
+  const s3_key = image_src.slice(11);
   const headerToken = req.headers.authorization.slice(7);
 
   jwt.verify(headerToken, JWT_SECRET, function(err, decoded) {
@@ -93,9 +98,9 @@ app.delete(`/api/image/delete/:image_id`, (req, res) => {
         }
         res.send({insertId});
       });
-
+      s3.deleteObjects(s3_key);
       fs.unlink(directoryPath + image_src.slice(10), (err => { 
-      if (err) console.log(err); 
+      if (err) console.log("no file found"); 
     })); 
   });
 });

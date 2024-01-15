@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import def_img from "../../../../static/assets/images/default-images/def_img.png";
 
 import {
     getTab,
