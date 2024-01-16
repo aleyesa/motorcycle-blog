@@ -20,48 +20,20 @@ export function createEditorAccount(username, password) {
         username,
         password
     
-    })
-    .then(response => {
-
-        validateLogin(username, password);
-    })
-    .catch(error => {
-        console.log(error);
-        return error;
     });
+
 
 }
 
 export function validateLogin(username, password) {
 
-    axios.post('/api/editor/login', 
+    return axios.post('/api/editor/login', 
     {
         
         username,
         password
     
-    })
-    .then(response => {
-
-        const authentication = {
-            editor_id: response.data.editor_id,
-            logged_in: response.data.logged_in,
-            jwt: response.data.jwt
-        };
-
-        if(response.data.invalid_credentials == true){
-            console.log(response.data);
-        } else {
-         updateLoginStatus(authentication);
-        }
-
-        
-    })
-    .catch(error => {
-        console.log(error);
-        return error;
     });
-
 }
 
 export function updateLoginStatus(authentication) {

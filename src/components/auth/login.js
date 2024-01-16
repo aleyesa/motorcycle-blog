@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { validateLogin } from "../api/editor";
+import { validateLogin, updateLoginStatus } from "../api/editor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Login extends Component {
@@ -10,7 +10,9 @@ export default class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            redirect: false
+            redirect: false,
+            hide: false,
+            text: ""
         }
 
         this.login = this.login.bind(this);
@@ -20,7 +22,34 @@ export default class Login extends Component {
         event.preventDefault();
 
         if(this.state.username !== "" & this.state.password !== ""){
-            validateLogin(this.state.username, this.state.password);
+            validateLogin(this.state.username, this.state.password)
+            .then(response => {
+
+                const authentication = {
+                    editor_id: response.data.editor_id,
+                    logged_in: response.data.logged_in,
+                    jwt: response.data.jwt
+                };
+        
+                if(response.data.invalid_credentials == true){
+                    this.setState({
+                        text: "Invalid Credentials",
+                        hide: false
+                });
+                } else {
+                 updateLoginStatus(authentication);
+                 this.setState({
+                    text: "Logged In Succesfully",
+                    hide: true
+                });
+                }
+        
+                
+            })
+            .catch(error => {
+                console.log(error);
+                return error;
+            });
             this.setState({redirect: true});
         } else {
             console.log("Need username and password");
@@ -33,8 +62,9 @@ export default class Login extends Component {
 
     render() {
     return (
-
+        this.state.hide === false ? (
         <div className="login-section">
+         
             <a className="nav-home" href="/"><FontAwesomeIcon icon="fa-solid fa-angle-left" />Back to Home</a>
 
             <form onSubmit={e => {
@@ -57,9 +87,23 @@ export default class Login extends Component {
 
             </form>
 
+            <p>{this.state.text}</p>
+
             <a className="nav-register" href="/register">Create Editor Account</a>
-               
+            
         </div>
+        )
+        :
+        (
+            <div className="login-section">
+
+                <a className="nav-home" href="/"><FontAwesomeIcon icon="fa-solid fa-angle-left" />Back to Home</a>
+                <p>{this.state.text}</p>
+
+            </div>
+
+        )
+        
         
         );
 

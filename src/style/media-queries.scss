@@ -1,18 +1,168 @@
-.responsive {
-    padding: 0 6px;
-    float: left;
-    width: 24.99999%;
-  }
-  
-  @media only screen and (max-width: 700px){
-    .responsive {
-      width: 49.99999%;
-      margin: 6px 0;
-    }
-  }
-  
-  @media only screen and (max-width: 500px){
-    .responsive {
+@media only screen and (max-width: 600px) {
+
+  .selected-img {
+    img {
+      height: auto;
       width: 100%;
     }
   }
+  
+  figure {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    height: auto;
+    width: 100%;
+
+  }
+
+
+
+  .app-wrapper .main-wrapper .tab-wrapper {
+    display:flex;
+    flex-direction: row;
+  }
+
+  .home-section .tab-data-section .image-carousel,
+  .past-section .tab-data-section .image-carousel,
+  .present-section .tab-data-section .image-carousel,
+  .future-section .tab-data-section .image-carousel {
+    
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+
+  }
+
+}
+  
+@media only screen and (min-width: 601px){
+  h1 {
+    font-size: 2em;
+  }
+
+  .fa-chart-line {
+    font-size: 1em;
+  }
+
+  span,
+  h2,
+  p,
+  figcaption,
+  svg,
+  label,
+  button,
+  .nav-register,
+  .nav-home,
+  input {
+    font-size: 2em;
+  }
+
+  .selected-img {
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .home-section .tab-data-section .image-carousel div div div figure .small-tab-img, .past-section .tab-data-section .image-carousel div div div figure .small-tab-img, .present-section .tab-data-section .image-carousel div div div figure .small-tab-img, .future-section .tab-data-section .image-carousel div div div figure .small-tab-img {
+    margin-left: 5px;
+    height: 100px;
+    width: 100px;
+  }
+
+
+  .app-wrapper .main-wrapper .tab-wrapper {
+    display:flex;
+    flex-direction: row;
+  }
+
+  .home-section .tab-data-section .image-carousel,
+  .past-section .tab-data-section .image-carousel,
+  .present-section .tab-data-section .image-carousel,
+  .future-section .tab-data-section .image-carousel {
+    
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+
+  }
+
+  .home-section .tab-data-section .image-carousel div,
+  .past-section .tab-data-section .image-carousel div,
+  .present-section .tab-data-section .image-carousel div,
+  .future-section .tab-data-section .image-carousel div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+
+
+}
+
+@media only screen and (min-width: 1200px){
+
+  h1 {
+    font-size: 3em;
+  }
+
+  .fa-chart-line {
+    font-size: 1em;
+  }
+
+  span,
+  h2,
+  p,
+  figcaption,
+  svg {
+    font-size: 3em;
+  }
+
+  .selected-img {
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .home-section .tab-data-section .image-carousel div div div figure .small-tab-img, .past-section .tab-data-section .image-carousel div div div figure .small-tab-img, .present-section .tab-data-section .image-carousel div div div figure .small-tab-img, .future-section .tab-data-section .image-carousel div div div figure .small-tab-img {
+    margin-left: 5px;
+    height: 150px;
+    width: 150px;
+  }
+
+
+  .app-wrapper .main-wrapper .tab-wrapper {
+    display:flex;
+    flex-direction: row;
+  }
+
+  .home-section .tab-data-section .image-carousel,
+  .past-section .tab-data-section .image-carousel,
+  .present-section .tab-data-section .image-carousel,
+  .future-section .tab-data-section .image-carousel {
+    
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+
+  }
+
+  .home-section .tab-data-section .image-carousel div,
+  .past-section .tab-data-section .image-carousel div,
+  .present-section .tab-data-section .image-carousel div,
+  .future-section .tab-data-section .image-carousel div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+}
+
+@media only screen and (min-width: 1800px){
+
+
+}

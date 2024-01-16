@@ -13,7 +13,8 @@ export default class Profile extends Component {
                 username: "",
                 password: ""
             },
-            new_password: ""
+            new_password: "",
+            deleted_account: false
         }
 
         this.getEditorInfo = this.getEditorInfo.bind(this);
@@ -47,7 +48,8 @@ export default class Profile extends Component {
 
     render() {
     return (
-
+    
+    this.state.deleted_account === false ? (
     <div className="profile-section">
         <a className="nav-home" href="/"><FontAwesomeIcon icon="fa-solid fa-angle-left" />Back to Home</a>
 
@@ -66,10 +68,19 @@ export default class Profile extends Component {
                 <button type="submit"  >Update Password</button>
             </form>
 
-            <button type="button" onClick={e => deleteEditorAccount(sessionStorage.getItem("editor_id"), sessionStorage.getItem("jwt"))}>Delete Account</button>
-
+            <button type="button" onClick={e => {
+                deleteEditorAccount(sessionStorage.getItem("editor_id"), sessionStorage.getItem("jwt"))
+                this.setState({deleted_account: true});
+            }}>Delete Account</button>
     </div>
-        
+    )
+    :
+    (
+        <div className="profile-section">
+            <a className="nav-home" href="/"><FontAwesomeIcon icon="fa-solid fa-angle-left" />Back to Home</a>
+            <h2>Account has been deleted!</h2>
+        </div>
+    )
         );
     }
     

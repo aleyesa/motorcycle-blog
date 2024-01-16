@@ -1,11 +1,10 @@
+@import "./image-carousel.scss";
+@import "./media-queries.scss";
 @import "./nav.scss";
 @import "./layout.scss";
-
-@import "./tab.scss";
 @import "./home.scss";
 @import "./profile.scss";
 @import "./edit.scss";
-@import "./image-carousel.scss";
 html {
     font-size: 62.5%; // 1rem is 10px
 }

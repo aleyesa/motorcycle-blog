@@ -629,7 +629,7 @@ app.post('/api/editor/creation', (req, res) => {
   db.createEditorAccount(username, password, (error, response) => {
 
     if (error) {
-      return res.send({error: error});
+      return res.send({error: true});
     }
     
     res.send(response);
