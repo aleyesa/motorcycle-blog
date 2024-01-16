@@ -14,7 +14,6 @@ export default class Register extends Component {
             text: ""
         }   
 
-
     }
 
     render() {

@@ -40,6 +40,9 @@ export default class Tab extends Component {
 
             edit_mode: false,
 
+            hide: true,
+            text: "",
+
             authentication: {
                 editor_id: "" || sessionStorage.getItem("editor_id"),
                 logged_in: (sessionStorage.getItem("logged_in") == null && sessionStorage.setItem("logged_in", "0")) || sessionStorage.getItem("logged_in"),
@@ -168,6 +171,12 @@ export default class Tab extends Component {
                     .then(response => {
 
                         updateATabSection(this.state.tab_path, this.state.tab_name_id, tab_section_data, response.data.image_id, this.state.authentication); 
+                        
+                        this.setState({
+                            text: "Tab Section Updated",
+                            hide: false
+                        });
+                        
                         this.setTabData();   
                     
                     })
@@ -178,7 +187,10 @@ export default class Tab extends Component {
                     }); 
                 } else {
 
-                    // alert("Need to include new image and an image name");
+                    this.setState({
+                        text: "Need to include new image and an image name",
+                        hide: false
+                    });
 
                 }
             }
@@ -186,7 +198,10 @@ export default class Tab extends Component {
             updateContent(tab_section_data, this.state, this.state.authentication);
             this.setTabData();
         } else {
-            console.log("Not Authorized");
+            this.setState({
+                text: "Not Authorized",
+                hide: false
+            });
         }
         
     }
@@ -203,7 +218,8 @@ export default class Tab extends Component {
                     <button className="edit-mode-btn" type="button" onClick={ e => 
                     {
                         if (this.state.edit_mode == false) {
-                            this.setState({edit_mode: true});
+                            this.setState({
+                                edit_mode: true});
                         } else {
                             this.setState({edit_mode: false});
                         }
@@ -261,9 +277,15 @@ export default class Tab extends Component {
                                     e.currentTarget.parentElement.style.borderColor = "black";
 
                                 }
-                            } type="button" onClick={e => this.delATabSection(tab_param_name)}>Delete Section</button>}     
+                            } type="button" onClick={e => {
+                                    this.delATabSection(tab_param_name);
+                                    this.setState({
+                                        text: "Tab Section Removed",
+                                        hide: true
+                                    });
+                                }}>Delete Section</button>}     
                             <form onSubmit={ (e) => {
-                                e.preventDefault();
+                                    e.preventDefault();
 
                                     this.submit(e, tab_param_name);
 
@@ -306,7 +328,13 @@ export default class Tab extends Component {
                                             
                                         }
                                     }
-                                onClick={() => this.replaceImage(tab_param_name)}>
+                                onClick={() => {
+                                    this.replaceImage(tab_param_name);
+                                    this.setState({
+                                        text: "Image Removed",
+                                        hide: true
+                                    });
+                                }}>
                                     Replace Image
                                 </button>
                                 <figure key={tab_param_name.image_id} accessKey={tab_param_name.image_id}>
@@ -336,6 +364,7 @@ export default class Tab extends Component {
                                         rows={5} 
                                         cols={30}
                                     />
+                                {this.state.hide === false && <p>{this.state.text}</p>}
                                 <button type="submit"
                                     onMouseEnter={
                                         e => {
